@@ -1,30 +1,44 @@
-// Get the modal
-var modal = document.getElementById("modal");
+// Smooth Scroll for Navigation Links
+document.querySelectorAll('nav ul li a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
 
-// Get the image and insert it inside the modal
-var images = document.getElementsByClassName("gallery-image");
-var modalImg = document.getElementById("img01");
-var captionText = document.getElementById("caption");
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
 
-for (let i = 0; i < images.length; i++) {
-    images[i].onclick = function(){
-        modal.style.display = "block";
-        modalImg.src = this.src;
-        captionText.innerHTML = this.alt;
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 50, // Adjust for header height
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Basic Form Validation
+document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (!name || !email || !message) {
+        alert('Please fill in all fields.');
+        return;
     }
-}
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
-    modal.style.display = "none";
-}
-
-// Close the modal when clicking anywhere outside of the image
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    if (!validateEmail(email)) {
+        alert('Please enter a valid email address.');
+        return;
     }
+
+    // If validation passes, you can proceed with form submission (e.g., via AJAX)
+    alert('Thank you for your message!');
+});
+
+// Email Validation Function
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
 }
