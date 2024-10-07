@@ -23,7 +23,7 @@ This repository contains the source code for a professional design agency websit
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-username/creative-minds-design-agency.git
+   git clone https://github.com/adanakbar/collaborative-project
    ```
 2. **Install Dependencies (if any):**
    If your project uses external libraries or frameworks, install them according to their instructions.
